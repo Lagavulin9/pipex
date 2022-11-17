@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:49:10 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 19:22:39 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 19:55:23 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <sys/types.h>
 # define USAGE_MSG "usage: pipex [file1] [cmd1] ... [cmdn] [file2]\n\
-	pipex here_doc LIMITER cmd1 cmd2 file"
+	pipex here_doc [LIMITER] [cmd1] [cmd2] [file]"
 # define NOT_FOUND_MSG "zsh: command not found: "
 # define TMP_FILE ".tmp"
 # define READ 0
