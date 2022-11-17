@@ -3,17 +3,14 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 GNL_DIR = get_next_line/
 GNL_SRC = get_next_line.c get_next_line_utils.c
-PRINTF_DIR = ft_printf/
-PRINTF_SRC = ft_printf.c utils.c utils2.c utils3.c utils4.c utils5.c
 SRC_DIR = srcs/
-SRC = pipex.c ft_malloc.c
+SRC = pipex.c pipex_utils.c err_utils.c
 SRC_BONUS_DIR = srcs_bonus/
 SRC_BONUS = 
-SRCS = $(addprefix $(SRC_DIR), $(SRC)) $(addprefix $(PRINTF_DIR), $(PRINTF_SRC))
-SRCS_BONUS = $(SRCS) \
-			$(addprefix $(GNL_DIR), $(GNL_SRC)) $(addprefix $(SRC_BONUS_DIR), $(SRC_BONUS))
+SRCS = $(addprefix $(SRC_DIR), $(SRC))
+SRCS_BONUS = $(addprefix $(SRC_BONUS_DIR), $(SRC_BONUS)) $(addprefix $(GNL_DIR), $(GNL_SRC)) 
 OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=.o) $(GNL_SRC:.c=.o)
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 INCLUDE = pipex.h
 LIBFT = libft/libft.a
 
@@ -22,13 +19,13 @@ ifdef SANITIZE
 endif
 
 ifdef BONUS
-	OBJS = $(SRCS_BONUS:.c=.o) $(GNL_SRC:.c=.o)
+	OBJS = $(OBJS_BONUS)
 endif
 
 all : $(NAME)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -c -o $@ -I libft -I get_next_line -I ft_printf $<
+	$(CC) $(CFLAGS) -c -o $@ -I libft -I get_next_line $<
 
 $(NAME) : $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
@@ -46,8 +43,8 @@ fclean : clean
 
 re : fclean all
 
-bonus :
-	make BONUS=1 all
+# bonus :
+# 	make BONUS=1 all
 
 sanitize :
 	make SANITIZE=1 re
