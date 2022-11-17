@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:19:27 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 19:25:19 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:39:38 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,20 @@ void	here_doc(t_info *info)
 	tmp_file = open_file(TMP_FILE, O_CREAT | O_RDWR);
 	while (1)
 	{
+		write(STDOUT_FILENO, "pipe heredoc> ", 14);
 		line = get_next_line(0);
 		if (line)
 		{
 			if (ft_strncmp(line, info->delimiter, \
 				ft_strlen(info->delimiter)) == 0)
+			{
+				free(line);
 				break ;
+			}
 			write(tmp_file, line, ft_strlen(line));
 			free(line);
 		}
 	}
-	free(line);
 }
 
 int	main(int argc, char *argv[], char *envp[])

@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:33:45 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 16:42:43 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:24:03 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*get_executable_path(char **argv, char **envp, int idx)
 	if (!path)
 		perror_exit(0, 1);
 	cmd = ft_split(argv[idx], ' ');
+	if (!*cmd)
+		command_not_found("");
 	i = 0;
 	while (path[i])
 	{
