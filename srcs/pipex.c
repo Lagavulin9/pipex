@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 12:19:27 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 16:45:08 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:48:54 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,12 @@ void	set_fd(t_info *info, int arg_idx)
 	int	to_stdin;
 	int	to_stdout;
 
+	to_stdin = info->prev;
+	to_stdout = info->pipe_fd[WRITE];
 	if (arg_idx == 2)
-	{
 		to_stdin = open_file(info->infile, O_RDONLY);
-		to_stdout = info->pipe_fd[WRITE];
-	}
 	else if (arg_idx == info->argc - 2)
-	{
-		to_stdin = info->prev;
 		to_stdout = open_file(info->outfile, O_CREAT | O_TRUNC | O_RDWR);
-	}
-	else
-	{
-		to_stdin = info->prev;
-		to_stdout = info->pipe_fd[WRITE];
-	}
 	if (dup2(to_stdin, STDIN_FILENO) == -1 || \
 			dup2(to_stdout, STDOUT_FILENO) == -1)
 		perror_exit("dup2", 1);
