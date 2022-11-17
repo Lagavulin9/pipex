@@ -6,7 +6,7 @@
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:49:10 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 19:55:23 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 21:07:22 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,10 @@ int		open_file(char *file_path, int options);
 char	**get_path(char **envp);
 char	*get_executable_path(char **argv, char **envp, int idx);
 void	execute(char **argv, char **envp, int arg_idx);
+
+void	set_info(t_info *info, int argc, char *argv[], char *envp[]);
+void	set_fd(t_info *info, int arg_idx);
+void	child_process(t_info *info, int arg_idx);
+void	here_doc(t_info *info);
 
 #endif
