@@ -6,12 +6,11 @@ GNL_SRC = get_next_line.c get_next_line_utils.c
 SRC_DIR = srcs/
 SRC = pipex.c pipex_utils.c err_utils.c
 SRC_BONUS_DIR = srcs_bonus/
-SRC_BONUS = 
+SRC_BONUS = pipex_bonus.c pipex_utils_bonus.c err_utils_bonus.c
 SRCS = $(addprefix $(SRC_DIR), $(SRC))
 SRCS_BONUS = $(addprefix $(SRC_BONUS_DIR), $(SRC_BONUS)) $(addprefix $(GNL_DIR), $(GNL_SRC)) 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
-INCLUDE = pipex.h
 LIBFT = libft/libft.a
 
 ifdef SANITIZE
@@ -43,8 +42,8 @@ fclean : clean
 
 re : fclean all
 
-# bonus :
-# 	make BONUS=1 all
+bonus :
+	make BONUS=1 all
 
 sanitize :
 	make SANITIZE=1 re

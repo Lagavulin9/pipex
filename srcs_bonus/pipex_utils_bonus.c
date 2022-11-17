@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_utils.c                                      :+:      :+:    :+:   */
+/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 21:33:45 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 16:42:43 by jinholee         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:48:34 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 #include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
@@ -69,6 +69,8 @@ char	*get_executable_path(char **argv, char **envp, int idx)
 	if (!path)
 		perror_exit(0, 1);
 	cmd = ft_split(argv[idx], ' ');
+	if (!*cmd)
+		command_not_found("");
 	i = 0;
 	while (path[i])
 	{

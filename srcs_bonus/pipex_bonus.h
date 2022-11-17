@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jinholee <jinholee@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 12:19:32 by jinholee          #+#    #+#             */
-/*   Updated: 2022/11/17 16:53:15 by jinholee         ###   ########.fr       */
+/*   Created: 2022/11/17 16:49:10 by jinholee          #+#    #+#             */
+/*   Updated: 2022/11/17 19:22:39 by jinholee         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
 
 # include <sys/types.h>
-# define USAGE_MSG "usage: pipex [file1] [cmd1] [cmd2] [file2]"
+# define USAGE_MSG "usage: pipex [file1] [cmd1] ... [cmdn] [file2]\n\
+	pipex here_doc LIMITER cmd1 cmd2 file"
 # define NOT_FOUND_MSG "zsh: command not found: "
+# define TMP_FILE ".tmp"
 # define READ 0
 # define WRITE 1
 
@@ -26,6 +28,7 @@ typedef struct s_info
 	int		pipe_fd[2];
 	char	*infile;
 	char	*outfile;
+	char	*delimiter;
 	char	**argv;
 	char	**envp;
 }				t_info;
